@@ -9,11 +9,11 @@
       </div>
       <div class="card">
         <div class="card-header">Issues Browser
-          <div class="filter right">Filter by: <a [(ngModel)]="searchText" [routerLink]="" (click)="filterIssues()">Open</a> | <a [routerLink]="" (click)="getIssues('closed')">Closed</a> | <a [routerLink]="" (click)="getIssues('all')">All</a></div>
+          <div class="filter right">Filter by:&nbsp;&nbsp;<input name="options" type="radio" [(ngModel)]="searchText" value="open" (change)="filterIssues()">&nbsp;&nbsp;Open &nbsp;&nbsp;<input name="options" type="radio" [(ngModel)]="searchText" value="closed" (change)="filterIssues()">&nbsp;&nbsp;Closed &nbsp;&nbsp;<input name="options" type="radio" [(ngModel)]="searchText" value="" [checked]="true" (change)="filterIssues()">&nbsp;&nbsp;All</div>
           <!-- <input type="text" [(ngModel)]="searchText" (change)="filterIssues()"> -->
         </div>
         <div class="card-body">
-            <div *ngFor="let issue of issues | filter : searchText" class="row">
+            <div *ngFor="let issue of issues | filter : searchText " class="row">
               <div class="col-lg-11">
                 <a href="{{issue.html_url}}" target="_blank">{{issue.title}}</a>
               </div>
