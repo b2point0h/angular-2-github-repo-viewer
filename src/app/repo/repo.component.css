@@ -1,0 +1,9 @@
+.card, .row {
+  margin-bottom: 20px;
+}
+.right {
+  float: right;
+}
+.inline {
+  display: inline;
+}

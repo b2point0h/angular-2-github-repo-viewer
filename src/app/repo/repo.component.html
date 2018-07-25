@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header"><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a> - {{repo.language}}
+            <div class="right inline"><span class="badge badge-primary"><i class="far fa-eye"></i> {{repo.watchers}}</span>&nbsp;<span class="badge badge-success"><i class="fas fa-star"></i> {{repo.stargazers_count}}</span>&nbsp;<span class="badge badge-secondary"><i class="fas fa-code-branch"></i> {{repo.forks}}</span></div>
+        </div>
+        <div class="card-body">{{repo.description}}</div>
+      </div>
+      <div class="card">
+        <div class="card-header">Issues Browser
+          <div class="filter right">Filter by: <a [(ngModel)]="searchText" [routerLink]="" (click)="filterIssues()">Open</a> | <a [routerLink]="" (click)="getIssues('closed')">Closed</a> | <a [routerLink]="" (click)="getIssues('all')">All</a></div>
+          <!-- <input type="text" [(ngModel)]="searchText" (change)="filterIssues()"> -->
+        </div>
+        <div class="card-body">
+            <div *ngFor="let issue of issues | filter : searchText" class="row">
+              <div class="col-lg-11">
+                <a href="{{issue.html_url}}" target="_blank">{{issue.title}}</a>
+              </div>
+              <div class="col-lg-1">
+                  <span [ngClass]="issue.state == 'open' ? 'badge badge-success' : 'badge badge-danger'" class="w-100">                  
+                      {{issue.state | uppercase}}
+                  </span>
+              </div>
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
