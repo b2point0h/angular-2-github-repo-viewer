@@ -9,7 +9,10 @@
       </div>
       <div class="card">
         <div class="card-header">Issues Browser
-          <div class="filter right">Filter by:&nbsp;&nbsp;<input name="options" type="radio" [(ngModel)]="searchText" value="open" (change)="filterIssues()">&nbsp;&nbsp;Open &nbsp;&nbsp;<input name="options" type="radio" [(ngModel)]="searchText" value="closed" (change)="filterIssues()">&nbsp;&nbsp;Closed &nbsp;&nbsp;<input name="options" type="radio" [(ngModel)]="searchText" value="" [checked]="true" (change)="filterIssues()">&nbsp;&nbsp;All</div>
+          <div class="filter right">
+            Filter by:&nbsp;&nbsp;<input name="options" type="radio" [(ngModel)]="searchText" value="open" (change)="filterIssues()">&nbsp;Open
+            &nbsp;&nbsp;<input name="options" type="radio" [(ngModel)]="searchText" value="closed" (change)="filterIssues()">&nbsp;Closed
+            &nbsp;&nbsp;<input name="options" type="radio" [(ngModel)]="searchText" value="" [checked]="true" (change)="filterIssues()">&nbsp;All</div>
           <!-- <input type="text" [(ngModel)]="searchText" (change)="filterIssues()"> -->
         </div>
         <div class="card-body">
