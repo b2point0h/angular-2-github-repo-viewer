@@ -5,7 +5,7 @@
         <div class="card-header">
           <div class="row m-b-0">
             <div class="col-md-7">
-                <a href="{{repo.html_url}}" target="_blank">{{repo?.name}}</a> - {{repo?.language}}
+                <a href="{{repo?.html_url}}" target="_blank">{{repo?.name}}</a> - {{repo?.language}}
             </div>
             <div class="col-md-5">
                 <div class="right">
@@ -63,12 +63,13 @@
             <div *ngFor="let issue of issues | filter : searchText" class="row">
               <div class="col-sm-10">
                 <a href="{{issue.html_url}}" target="_blank">{{issue.title}}</a>
+                <span *ngIf="issue.pull_request" class="badge badge-warning"><i class="fas fa-code-branch"></i> PULL REQUEST</span>                
               </div>
               <div class="col-sm-2">
                   <div class="right">
                       <span [ngClass]="issue.state == 'open' ? 'badge badge-success' : 'badge badge-danger'" class="w-100">                  
-                          {{issue.state | uppercase}}
-                      </span>
+                          {{issue.state | uppercase}} 
+                      </span>                      
                   </div>
               </div>
             </div>

@@ -12,6 +12,9 @@
     margin-top: 10px;
     margin: 0 auto;
 }
+.badge.badge-warning {
+    margin-left: 20px;
+}
 @media (max-width: 768px) {
     .right {
       float: left;
