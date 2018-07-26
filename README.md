@@ -1,4 +1,4 @@
-# ProfileViewer
+# Github Repo Viewer
 
 ## Live Demo
 https://repo-viewer.herokuapp.com/
