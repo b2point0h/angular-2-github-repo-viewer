@@ -9,6 +9,7 @@ import { RepoComponent } from './repo/repo.component';
 import { SearchComponent } from './search/search.component';
 import { FilterPipe } from './filter.pipe';
 import { ChartModule } from 'angular2-highcharts';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 
 const appRoutes: Routes = [
   { 
@@ -49,7 +50,7 @@ export function highchartsFactory() {
   ],
   providers: [
     {
-      provide: ChartModule,
+      provide: HighchartsStatic,
       useFactory: highchartsFactory
     },
     RepoSearchService
