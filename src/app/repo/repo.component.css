@@ -1,9 +1,14 @@
 .card, .row {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 .right {
-  float: right;
+    float: right;
 }
-.inline {
-  display: inline;
-}
+.m-b-0 {
+    margin-bottom: 0px;
+  }
+@media (max-width: 768px) {
+    .right {
+      float: left;
+    }
+  }
