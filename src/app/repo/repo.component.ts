@@ -4,8 +4,6 @@ import { IssueList } from "../models/issuelist";
 import { ChartData } from "../models/chartdata";
 import { RepoSearchService } from "../services/repo-search.service";
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { FilterPipe } from '../filter.pipe';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-repo',
@@ -37,7 +35,6 @@ export class RepoComponent implements OnInit {
 
   constructor(private repoServiceSearch: RepoSearchService, private route: ActivatedRoute,
     private router: Router,) {                         
-
   }
 
   getDetails(owner, id): void {
@@ -77,14 +74,11 @@ export class RepoComponent implements OnInit {
       this.loading = false;
     });            
   }
-
   
-
   filterIssues(s) {    
     this.selected_issues = this.issues.filter(s => {
       return s.state;
-    });
-      
+    });      
   }
 
   ngOnInit() {
@@ -92,8 +86,6 @@ export class RepoComponent implements OnInit {
         owner = this.route.snapshot.paramMap.get('owner');
 
     this.getDetails(owner, id);    
-    this.getIssues('all');
-    
+    this.getIssues('all');    
   }
-
 }

@@ -6,6 +6,14 @@ export class AppPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('strong')).getText();
+  }
+
+  getButtonText() {
+    return element(by.className('btn-success')).getText();
+  }
+
+  getRepoName() {
+    return element(by.className('col-md-7')).getText();
   }
 }
