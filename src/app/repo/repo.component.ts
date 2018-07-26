@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Repo } from "../models/repo";
 import { IssueList } from "../models/issuelist";
-import { ChartData } from "../models/chartdata";
 import { RepoSearchService } from "../services/repo-search.service";
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -20,7 +19,6 @@ export class RepoComponent implements OnInit {
   closedIssues:number = 0;
  
   //Chart
-  view: any[] = [800, 300];
   showLegend:boolean = true;
  
   colorScheme = {
@@ -30,8 +28,9 @@ export class RepoComponent implements OnInit {
   explodeSlices:boolean = false;
   doughnut:boolean = false;
   chartHasData: boolean = false;
-  chartData: ChartData[] = [];
+  chartOptions = {};
   loading: boolean = true;
+  
 
   constructor(private repoServiceSearch: RepoSearchService, private route: ActivatedRoute,
     private router: Router,) {                         
@@ -62,16 +61,40 @@ export class RepoComponent implements OnInit {
           this.closedIssues += 1;
         }
       }
-      this.chartData.push({
-        "name": "Open Issues",
-        "value": this.openIssues
-      });
-      this.chartData.push({
-        "name": "Closed Issues",
-        "value": this.closedIssues
-      });
       this.chartHasData = true;
       this.loading = false;
+
+      this.chartOptions = {
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+        },
+        title : { text : 'Repo Issues' },
+        plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b>: {point.y}',                  
+              }
+          }
+        },
+        series: [{
+            name: "Issues",
+            colorByPoint: true,
+            data: [{
+              name: "Open Issues",
+              y: this.openIssues
+            }, {
+              name: "Closed Issues",
+              y: this.closedIssues
+            }],
+        }]
+      };
+
     });            
   }
   

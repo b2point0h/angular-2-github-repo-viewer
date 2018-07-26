@@ -3,14 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { RepoSearchService } from "./services/repo-search.service";
 import { RepoComponent } from './repo/repo.component';
 import { SearchComponent } from './search/search.component';
 import { FilterPipe } from './filter.pipe';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartModule } from 'angular2-highcharts';
 
 const appRoutes: Routes = [
   { 
@@ -26,6 +25,8 @@ const appRoutes: Routes = [
   //{ path: '**', component: PageNotFoundComponent }
 ];
 
+export declare let require: any;
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgxChartsModule,
+    ChartModule.forRoot(require('highcharts')),
     BrowserAnimationsModule
   ],
   providers: [RepoSearchService],

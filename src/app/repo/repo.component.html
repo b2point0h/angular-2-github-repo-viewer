@@ -26,7 +26,7 @@
           <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
         </div>
         <div class="card-body">
-            <ngx-charts-pie-chart *ngIf= "chartHasData"
+            <!-- <ngx-charts-pie-chart *ngIf= "chartHasData"
               [view]="view"
               [scheme]="colorScheme"
               [results]="chartData"
@@ -35,7 +35,10 @@
               [labels]="showLabels"
               [doughnut]="doughnut"
               (select)="onSelect($event)">
-            </ngx-charts-pie-chart>
+            </ngx-charts-pie-chart> -->
+            <div class="center">
+              <chart *ngIf= "chartHasData" [options]="chartOptions"></chart>
+            </div>
         </div>
       </div>
       <div class="card">
