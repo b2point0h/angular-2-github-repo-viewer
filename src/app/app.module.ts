@@ -8,7 +8,6 @@ import { RepoSearchService } from "./services/repo-search.service";
 import { RepoComponent } from './repo/repo.component';
 import { SearchComponent } from './search/search.component';
 import { FilterPipe } from './filter.pipe';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartModule } from 'angular2-highcharts';
 
 const appRoutes: Routes = [
@@ -27,6 +26,11 @@ const appRoutes: Routes = [
 
 export declare let require: any;
 
+export function highchartsFactory() {
+  const hc = require('highcharts');
+  return hc;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,12 +43,17 @@ export declare let require: any;
       appRoutes
     ),
     BrowserModule,
-    FormsModule,
     HttpModule,
-    ChartModule.forRoot(require('highcharts')),
-    BrowserAnimationsModule
+    ChartModule,
+    FormsModule
   ],
-  providers: [RepoSearchService],
+  providers: [
+    {
+      provide: ChartModule,
+      useFactory: highchartsFactory
+    },
+    RepoSearchService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

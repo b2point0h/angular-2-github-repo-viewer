@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-5">
                 <div class="right">
-                  <span class="badge badge-primary"><i class="far fa-eye"></i> {{repo?.watchers}}</span>&nbsp;
+                  <span class="badge badge-primary"><i class="far fa-eye"></i> {{repo?.watchers_count}}</span>&nbsp;
                   <span class="badge badge-success"><i class="fas fa-star"></i> {{repo?.stargazers_count}}</span>&nbsp;
                   <span class="badge badge-secondary"><i class="fas fa-code-branch"></i> {{repo?.forks}}</span>
                 </div>
@@ -25,20 +25,8 @@
         <div class="fa-4x center">
           <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
         </div>
-        <div class="card-body">
-            <!-- <ngx-charts-pie-chart *ngIf= "chartHasData"
-              [view]="view"
-              [scheme]="colorScheme"
-              [results]="chartData"
-              [legend]="showLegend"
-              [explodeSlices]="explodeSlices"
-              [labels]="showLabels"
-              [doughnut]="doughnut"
-              (select)="onSelect($event)">
-            </ngx-charts-pie-chart> -->
-            
-              <chart *ngIf= "chartHasData" [options]="chartOptions"></chart>
-            
+        <div class="card-body">            
+          <chart *ngIf= "chartHasData" [options]="chartOptions"></chart>         
         </div>
       </div>
       <div class="card">

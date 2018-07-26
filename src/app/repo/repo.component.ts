@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Repo } from "../models/repo";
 import { IssueList } from "../models/issuelist";
 import { RepoSearchService } from "../services/repo-search.service";
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-repo',
@@ -109,7 +109,7 @@ export class RepoComponent implements OnInit {
     });            
   }
   
-  filterIssues(s) {    
+  filterIssues(s?: string) {    
     this.selected_issues = this.issues.filter(s => {
       return s.state;
     });      
