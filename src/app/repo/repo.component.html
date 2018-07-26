@@ -5,20 +5,38 @@
         <div class="card-header">
           <div class="row m-b-0">
             <div class="col-md-7">
-                <a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a> - {{repo.language}}
+                <a href="#" target="_blank">{{repo?.name}}</a> - {{repo?.language}}
             </div>
             <div class="col-md-5">
                 <div class="right">
-                  <span class="badge badge-primary"><i class="far fa-eye"></i> {{repo.watchers}}</span>&nbsp;
-                  <span class="badge badge-success"><i class="fas fa-star"></i> {{repo.stargazers_count}}</span>&nbsp;
-                  <span class="badge badge-secondary"><i class="fas fa-code-branch"></i> {{repo.forks}}</span>
+                  <span class="badge badge-primary"><i class="far fa-eye"></i> {{repo?.watchers}}</span>&nbsp;
+                  <span class="badge badge-success"><i class="fas fa-star"></i> {{repo?.stargazers_count}}</span>&nbsp;
+                  <span class="badge badge-secondary"><i class="fas fa-code-branch"></i> {{repo?.forks}}</span>
                 </div>
             </div>
           </div>
           
           
         </div>
-        <div class="card-body">{{repo.description}}</div>
+        <div class="card-body">{{repo?.description}}</div>
+      </div>
+      <div class="card">
+        <div class="card-header">Repo Stats</div>
+        <div class="fa-4x center">
+          <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
+        </div>
+        <div class="card-body">
+            <ngx-charts-pie-chart *ngIf= "chartHasData"
+              [view]="view"
+              [scheme]="colorScheme"
+              [results]="chartData"
+              [legend]="showLegend"
+              [explodeSlices]="explodeSlices"
+              [labels]="showLabels"
+              [doughnut]="doughnut"
+              (select)="onSelect($event)">
+            </ngx-charts-pie-chart>
+        </div>
       </div>
       <div class="card">
         <div class="card-header">
@@ -36,7 +54,10 @@
           </div>
         </div>
         <div class="card-body">
-            <div *ngFor="let issue of issues | filter : searchText " class="row">
+            <div class="fa-4x center">
+              <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
+            </div>
+            <div *ngFor="let issue of issues | filter : searchText" class="row">
               <div class="col-sm-10">
                 <a href="{{issue.html_url}}" target="_blank">{{issue.title}}</a>
               </div>

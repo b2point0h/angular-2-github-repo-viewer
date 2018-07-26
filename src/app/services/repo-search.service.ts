@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptionsArgs } from "@angular/http";
-import { Observable, interval, pipe } from 'rxjs';
-import { switchMap, map} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, catchError} from 'rxjs/operators';
 import { RepoList } from "../models/repolist";
 import { Repo } from "../models/repo";
 import { IssueList } from "../models/issuelist";
@@ -56,7 +56,8 @@ export class RepoSearchService {
     let endPoint = '/repos/' + owner + '/' + id;
 
     return this.get(endPoint)
-                .pipe(map(res => res.json() as Repo));
+                .pipe(map(res => res.json() as Repo), catchError(err => Observable.throw(err)));
+                
   }
 
   getIssues(owner: string, id: string, filter?: string): Observable<IssueList[]> {
@@ -64,7 +65,7 @@ export class RepoSearchService {
     let endPoint = '/repos/' + owner  + '/' + id + '/issues?state=' + filter;
 
     return this.get(endPoint)
-                .pipe(map(res => res.json() as IssueList[]));
+                .pipe(map(res => res.json() as IssueList[], catchError(err => Observable.throw(err))));
   }
   
 
@@ -72,6 +73,6 @@ export class RepoSearchService {
     let endPoint = '/search/repositories?q=' + q;
         
     return this.get(endPoint)
-                .pipe(map(res => res.json() as RepoList[]));
+                .pipe(map(res => res.json() as RepoList[], catchError(err => Observable.throw(err))));
   }
 }
