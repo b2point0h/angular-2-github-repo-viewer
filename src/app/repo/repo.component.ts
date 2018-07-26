@@ -82,6 +82,11 @@ export class RepoComponent implements OnInit {
               }
           }
         },
+        legend: {
+          align: 'right',
+          verticalAlign: 'middle',
+          layout: 'vertical'
+        },
         series: [{
             name: "Issues",
             colorByPoint: true,
@@ -92,9 +97,15 @@ export class RepoComponent implements OnInit {
               name: "Closed Issues",
               y: this.closedIssues
             }],
-        }]
+        }],
+        responsive: {
+          rules: [{
+              condition: {
+                  maxWidth: 500
+              }
+          }]
+        }
       };
-
     });            
   }
   
