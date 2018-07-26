@@ -40,6 +40,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 3) As a User I would like to link off to the actual GitHub page where the repository is located in order to view the code in the repository
 
 4) As a User I would like to view a list of all the current issues for a repository in order to view the backlog of issues
+> NOTE: Becuase pagination has not been implemented, number of returned issues is limited to default 30.
 
 5) As a User I would like to filter the list of issues between STATE = [“Open” or “Closed”] in order to look through the filtered list
 
